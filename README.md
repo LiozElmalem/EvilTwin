@@ -1,4 +1,21 @@
 # WiFi-EvilTwin 
+     ( )
+      H
+      H
+     _H_  
+  .-'-.-'-.
+ /         |
+|           |
+|   .-------'._
+|  / /  '.' '. |
+|  \ \ @   @ / / 
+|   '---------'       
+|    _______|       
+|  .'-+-+-+|         
+|  '.-+-+-+|         
+|    '''''' |
+'-.__   __.-'
+
 Create wifi AP that enables users to browse the internet
 
 I'm currently working on my university projects. After that I will focus on this repo. 
@@ -34,3 +51,6 @@ You can also log with dnsspoof.
 
 Usage:
 $ dnsspoof -i <name of interface of AP>
+  
+  
+.  
