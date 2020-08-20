@@ -1,21 +1,4 @@
-# WiFi-EvilTwin 
-     ( ) \n
-      H \n
-      H \n
-     _H_  \n
-  .-'-.-'-. \n
- /         | \n
-|           | \n
-|   .-------'._ \n
-|  / /  '.' '. | \n
-|  \ \ @   @ / /  \n
-|   '---------'     \n  
-|    _______|       \n
-|  .'-+-+-+|         \n
-|  '.-+-+-+|         \n
-|    '''''' |  \n
-'-.__   __.-'  \n\n
-
+# EvilTwin 
 Create wifi AP that enables users to browse the internet
 
 I'm currently working on my university projects. After that I will focus on this repo. 
