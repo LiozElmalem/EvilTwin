@@ -1,5 +1,7 @@
 #!/bin/bash
 
+upstream_interface=$1
+
 echo """
       \\
      ( )
@@ -35,7 +37,7 @@ echo nameserver 127.0.0.1 > /etc/resolv.conf
 
 # Web server initalization - apache2 service start
 
-service apache2 start &
+service apache2 start &127.0.0.1
 
 # Start hostapd service
 
@@ -43,13 +45,10 @@ xterm -e hostapd Configuration/hostapd.conf &
  
 # Configue the traffic
 
-ifconfig wlxc83a35c2e034 10.0.0.1 netmask 255.255.255.0 & 
+ifconfig $upstream_interface 10.0.0.1 netmask 255.255.255.0 & 
 route add -net 10.0.0.0 netmask 255.255.255.0 gw 10.0.0.1 &
 
 # Start dnsmasq service
 
 xterm -e dnsmasq -C Configuration/dnsmasq.conf -d &
-
-
-
 
