@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import subprocess
+from argparse import ArgumentParser
 from scapy.all import sendp
 import scapy.layers.dot11 as dot11
 
@@ -12,6 +13,59 @@ HOSTAPD_DEFAULT_HW_MODE = 'g'
 
 DNSMASQ_CONF = DIR_PATH + '/Configuration/dnsmasq.conf'
 DNSMASQ_LOG = DIR_PATH + '/Log/dnsmasq.log'
+
+def set_configs():
+
+    parser = ArgumentParser()
+
+    parser.add_argument('-u',
+                dest='upstream',
+                required=True,
+                type=str,
+                metavar='<upstream interface>',
+                help='Use this interface as access point.')
+
+    parser.add_argument('-s',
+                dest='ssid',
+                required=True,
+                type=str,
+                metavar='<ssid>',
+                help='The ssid of the target ap.')
+
+    parser.add_argument('-c',
+                dest='channel',
+                required=True,
+                type=int,
+                metavar='<channel>',
+                help='The channel of the target ap.')
+
+    args = parser.parse_args()
+    
+    return {
+        'upstream' : args.upstream,
+        'ssid' : args.ssid,
+        'channel' : args.channel,
+    }
+
+def display_configs(configs):
+
+    print
+    print ('[+] Access Point interface:', configs['upstream'])
+    print ('[+] Target AP Name:', configs['ssid'])
+    print ('[+] Target AP Channel:', configs['channel'])
+    print
+
+def kill_daemons():
+
+    print ('[*] Killing existing dnsmasq and hostapd processes.')
+    print 
+
+    bash_command('killall dnsmasq')
+    bash_command('killall hostapd')
+    bash_command('killall apache2')
+
+    print
+    print ('[*] Continuing...')
 
 def deauth(src , dst , interface , count=100):
 
