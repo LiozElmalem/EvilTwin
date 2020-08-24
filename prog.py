@@ -36,19 +36,20 @@ def main():
 
     # configure dnsmasq
     print ('[*] Configuring dnsmasq')
-    dnsmasq.configure(configs['upstream'],
+    dnsmasq.configure(configs['phys'],
                     '10.0.0.0,10.0.0.250,12h',
                     dhcp_options=[ '3,10.0.0.1', '6,10.0.0.1' ])
 
     # configure hostpad
     print ('[*] Configuring hostapd')
-    hostapd.configure(configs['upstream'],
+    hostapd.configure(configs['phys'],
                     configs['ssid'],
                     configs['channel'])
 
     try:
-
-        bash_command('bash start.sh %s' % configs['upstream'])
+        mac_target = input('\nChoose the mac address you want to attack\n')
+        mac_ap = input('\nEnter the mac of the access point\n')
+        bash_command('./start.sh {0} {1} {2} {3}'.format(configs['upstream'] , mac_target , mac_ap , configs['phys']))
 
     except KeyboardInterrupt:
 

