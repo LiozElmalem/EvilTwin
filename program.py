@@ -57,7 +57,15 @@ def main():
 
         mac_ap = input('\nEnter the mac of the access point\n')
         mac_target = input('\nChoose the mac address you want to attack\n')
+
+        defend_choose = input('Run defend service ? [Y/y] or [N/n]')
+
         bash_command('./start.sh {0} {1} {2} {3}'.format(configs['upstream'] , mac_target , mac_ap , configs['phys']))
+
+        if(defend_choose == 'y' or defend_choose == 'Y'):
+
+            bash_command('python3 /Defend/defend.py')    
+
 
     except KeyboardInterrupt:
 
