@@ -12,20 +12,6 @@
 	- hostapd - Host AP Default configuration: /etc/hostapd/hostapd.conf Used to open AP wirelessly.
 	- dnsmasq - DHCP server + DNS server Default configuration: /etc/dnsmasq.conf Used to assign IP for clients on AP.
 
-###Links
-
-[Links](http://localhost/)
-
-[Links with title](http://localhost/ "link title")
-
-`<link>` : <https://github.com>
-
-[Reference link][id/name] 
-
-[id/name]: http://link-url/
-
-GFM a-tail link @pandao
-
 ### Setup environment
 
 #### terminal command
@@ -40,30 +26,12 @@ GFM a-tail link @pandao
 
 #### reset command
 
-`$ ./reset,sh`
+`$ ./reset.sh`
 
 ----
 
-###FlowChart
-
-```flow
-st=>start: Login
-op=>operation: Login operation
-cond=>condition: Successful Yes or No?
-e=>end: To admin
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-
-###Sequence Diagram
-                    
-```seq
-Andrew->China: Says Hello 
-Note right of China: China thinks\nabout it 
-China-->Andrew: How are you? 
-Andrew->>China: I am good thanks!
-```
-
-###End
+### Credits
+- Wikipedia - https://en.wikipedia.org/wiki/Evil_twin_(wireless_networks)
+- Airgeddon - https://github.com/v1s1t0r1sh3r3/airgeddon
+- Wirespy - https://github.com/aress31/wirespy
+- Gabriel Ryan - https://github.com/s0lst1c3/evil_twin
