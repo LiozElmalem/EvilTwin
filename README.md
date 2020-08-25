@@ -22,7 +22,7 @@
 
 - Start command
 
-    `$ python console.py`
+    `$ python program.py -u <Upstream Interface> -i <Physical Interface> -c <Access Point Channel> -s <Access Point Essid>` 
 
 - Reset command
 
