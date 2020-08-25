@@ -25,8 +25,8 @@ def main():
                     configs['channel'])
 
     try:
-        mac_target = input('\nChoose the mac address you want to attack\n')
         mac_ap = input('\nEnter the mac of the access point\n')
+        mac_target = input('\nChoose the mac address you want to attack\n')
         bash_command('./start.sh {0} {1} {2} {3}'.format(configs['upstream'] , mac_target , mac_ap , configs['phys']))
 
     except KeyboardInterrupt:

@@ -1,9 +1,10 @@
 import iwlist
 import os
+import sys
 
 os.system("iwconfig")
 
-interface = input("Please Choose Your Interface\n")
+interface = sys.argv[1]
 
 content = iwlist.scan(interface=interface)
 cells = iwlist.parse(content)
