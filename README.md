@@ -8,7 +8,7 @@
 - Ethernet connection
 - Linux system 
 - Services:
-	- apache2  
+	- apache2 - Web server.
 	- hostapd - Host AP Default configuration: /etc/hostapd/hostapd.conf Used to open AP wirelessly.
 	- dnsmasq - DHCP server + DNS server Default configuration: /etc/dnsmasq.conf Used to assign IP for clients on AP.
 
