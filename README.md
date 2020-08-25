@@ -1,39 +1,69 @@
-# EvilTwin 
-Create wifi AP that enables users to browse the internet
+# **Wifi Evil Twin**
 
-I'm currently working on my university projects. After that I will focus on this repo. 
+![](https://designcontest-com-au-designcontest.netdna-ssl.com/data/contests/302364/entries/2daaf5f30aefca34.png)
 
-## Hardware requierments
-Wifi adapters - first one to monitor and second one to master.
+### Required
 
-## Report
-liozelmalem7@gmail.com 
+- 2 Wifi adapters - first one to monitor and second one to master.
+- Ethernet connection
+- Linux system 
+- Services:
+	- apache2  
+	- hostapd - Host AP Default configuration: /etc/hostapd/hostapd.conf Used to open AP wirelessly.
+	- dnsmasq - DHCP server + DNS server Default configuration: /etc/dnsmasq.conf Used to assign IP for clients on AP.
 
-## Dependencies
+###Links
 
-* hostapd - Host AP
+[Links](http://localhost/)
 
-Default configuration: /etc/hostapd/hostapd.conf
+[Links with title](http://localhost/ "link title")
 
-Used to open AP wirelessly.
+`<link>` : <https://github.com>
 
+[Reference link][id/name] 
 
-* dnsmasq - DHCP server + DNS server
+[id/name]: http://link-url/
 
-Default configuration: /etc/dnsmasq.conf
+GFM a-tail link @pandao
 
-Used to assign IP for clients on AP.
+### Setup environment
 
-## Usage 
-$ bash start.sh
+#### terminal command
 
-## Logs 
-Locate at dnsmasq area.
+`$ ./setup.sh`
 
-You can also log with dnsspoof.
+### Usage
 
-Usage:
-$ dnsspoof -i <name of interface of AP>
-  
-  
-.  
+#### start command
+
+`$ python console.py`
+
+#### reset command
+
+`$ ./reset,sh`
+
+----
+
+###FlowChart
+
+```flow
+st=>start: Login
+op=>operation: Login operation
+cond=>condition: Successful Yes or No?
+e=>end: To admin
+
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```
+
+###Sequence Diagram
+                    
+```seq
+Andrew->China: Says Hello 
+Note right of China: China thinks\nabout it 
+China-->Andrew: How are you? 
+Andrew->>China: I am good thanks!
+```
+
+###End
