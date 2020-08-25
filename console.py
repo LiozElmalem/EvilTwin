@@ -46,5 +46,7 @@ def main():
 
     bash_command('xterm -e python3 program.py -u {0} -i {1} -c {2} -s {3} &'.format(upstream_interface_choose , phys_interface_choose , channel_choose , ssid_choose))
 
+    bash_command('xterm -e python3 /Sniffing/sniffer.py &')
+
 if __name__ == '__main__':
     main()
