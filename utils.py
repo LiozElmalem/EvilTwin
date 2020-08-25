@@ -56,8 +56,8 @@ def set_configs():
 def display_configs(configs):
 
     print
-    print ('[+] Access Point interface:', configs['upstream'])
-    print ('[+] Physical interface:', configs['phys'])
+    print ('[+] Access Point interface:', configs['phys'])
+    print ('[+] Upstream interface:', configs['upstream'])
     print ('[+] Target AP Name:', configs['ssid'])
     print ('[+] Target AP Channel:', configs['channel'])
     print
@@ -104,7 +104,6 @@ class HostAPD(object):
             upstream,
             ssid,
             channel,
-            password='12345678',
             driver=HOSTAPD_DEFAULT_DRIVER,
             hw_mode=HOSTAPD_DEFAULT_HW_MODE):
 

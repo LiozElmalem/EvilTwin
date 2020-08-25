@@ -43,4 +43,4 @@ route add -net 10.0.0.0 netmask 255.255.255.0 gw 10.0.0.1 &
 
 xterm -e dnsmasq -C Configuration/dnsmasq.conf -d & 
 
-xterm -e python3 deauth.py $mac_ap $mac_target $upstream_interface &
+python3 deauth.py $mac_ap $mac_target $upstream_interface &

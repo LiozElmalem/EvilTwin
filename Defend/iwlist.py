@@ -52,4 +52,5 @@ def parse(content):
                 else :
                     cells[-1].update(result.groupdict())
                 continue
+    print(cells)
     return cells
