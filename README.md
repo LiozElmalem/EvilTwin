@@ -14,19 +14,19 @@
 
 ### Setup environment
 
-#### terminal command
+	#### Terminal command
 
-`$ ./setup.sh`
+	`$ ./setup.sh`
 
 ### Usage
 
-#### start command
+	#### Start command
 
-`$ python console.py`
+	`$ python console.py`
 
-#### reset command
+	#### Reset command
 
-`$ ./reset.sh`
+	`$ ./reset.sh`
 
 ----
 
