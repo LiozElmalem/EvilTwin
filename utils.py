@@ -7,6 +7,7 @@ DIR_PATH = '/home/lioz/Desktop/Lioz/Defends Network/eviltwin'
 
 HOSTAPD_CONF = DIR_PATH + '/Configuration/hostapd.conf'
 HOSTAPD_DEFAULT_DRIVER = 'nl80211'
+# g - Range frequency - 2.4 - 5.0 GH (Optimal according to GeeksForGeeks)
 HOSTAPD_DEFAULT_HW_MODE = 'g'
 
 DNSMASQ_CONF = DIR_PATH + '/Configuration/dnsmasq.conf'
@@ -64,7 +65,7 @@ def display_configs(configs):
 
 def kill_daemons():
 
-    print ('[*] Killing existing dnsmasq and hostapd processes.')
+    print ('[*] Killing existing dnsmasq , hostapd and apache2 processes.')
     print 
 
     bash_command('killall dnsmasq')
@@ -78,6 +79,7 @@ def bash_command(command):
 
 	command = command.split()
 	p = subprocess.Popen(command, stdout=subprocess.PIPE)
+    # Execute
 	p.communicate()
 
 class HostAPD(object):
@@ -101,7 +103,7 @@ class HostAPD(object):
         bash_command('pkill -9 hostapd')
 
     def configure(self,
-            upstream,
+            phys,
             ssid,
             channel,
             driver=HOSTAPD_DEFAULT_DRIVER,
@@ -110,7 +112,7 @@ class HostAPD(object):
         with open(self.conf, 'w') as fd:
         
             fd.write('\n'.join([
-                'interface=%s' % upstream,
+                'interface=%s' % phys,
                 'driver=%s' % driver,
                 'ssid=%s' % ssid,
                 'channel=%d' % channel,
@@ -139,7 +141,7 @@ class DNSMasq(object):
         bash_command('pkill -9 dnsmasq')
 
     def configure(self,
-                upstream,
+                phys,
                 dhcp_range,
                 dhcp_options=[],
                 log_facility=DNSMASQ_LOG):
@@ -148,7 +150,7 @@ class DNSMasq(object):
         
             fd.write('\n'.join([
                 'log-facility=%s' % log_facility,
-                'interface=%s' % upstream,
+                'interface=%s' % phys,
                 'dhcp-range=%s' % dhcp_range,
                 '\n'.join('dhcp-option=%s' % o for o in dhcp_options),
                 'address=/#/10.0.0.1',

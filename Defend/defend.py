@@ -4,9 +4,12 @@ import sys
 
 os.system("iwconfig")
 
-interface = sys.argv[1]
+interface = input('Choose interface to protect on\n')
 
+# Scanning the networks
 content = iwlist.scan(interface=interface)
+
+# Parse the networks to objects
 cells = iwlist.parse(content)
         
 for i in cells:
@@ -16,4 +19,4 @@ for i in cells:
     if(cells.count(i['essid']) > 1 and cells.count(i['mac']) < 1):        
         raise Exception("You are currently under attack!!!\nplease do not enter any network\n") 
 
-print('You Are Protected\n')
+print('\n\n\nYou Are Protected\n')

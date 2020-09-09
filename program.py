@@ -32,7 +32,6 @@ def main():
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            
 """)
 
-
     configs = set_configs()
     display_configs(configs)
     kill_daemons()
@@ -45,6 +44,8 @@ def main():
     print ('[*] Configuring dnsmasq')
     dnsmasq.configure(configs['phys'],
                     '10.0.0.0,10.0.0.250,12h',
+                    # 3 - Router
+                    # 6 - Dns servers 
                     dhcp_options=[ '3,10.0.0.1', '6,10.0.0.1' ])
 
     # configure hostpad
@@ -55,17 +56,17 @@ def main():
 
     try:
 
-        mac_ap = input('\nEnter the mac of the access point\n')
-        mac_target = input('\nChoose the mac address you want to attack\n')
+        #mac_ap = input('\nEnter the mac of the access point\n')
+        mac_ap = "0C:B6:D2:E7:50:57"
+        
+        #mac_target = input('\nChoose the mac address you want to attack\n')
+        
+        # Gal
+        mac_target = "DC:53:60:95:22:CF"
+        # Daniel
+        #mac_target = "5C:EA:1D:AC:58:A7"
 
-        defend_choose = input('Run defend service ? [Y/y] or [N/n]')
-
-        bash_command('./start.sh {0} {1} {2} {3}'.format(configs['upstream'] , mac_target , mac_ap , configs['phys']))
-
-        if(defend_choose == 'y' or defend_choose == 'Y'):
-
-            bash_command('python3 /Defend/defend.py')    
-
+        bash_command('./start.sh {0} {1} {2} {3}'.format(configs['upstream'] , mac_target , mac_ap , configs['phys']))   
 
     except KeyboardInterrupt:
 
@@ -78,7 +79,7 @@ def main():
     print ('[*] Stopping apache2.')
     apache2.stop()
 
-    bash_command('bash reset.sh')
+    bash_command('bash reset.sh &')
 
 if __name__ == '__main__':
     main()

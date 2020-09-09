@@ -1,5 +1,6 @@
-apt-get install hostapd
-apt-get install dnsmasq
-apt-get install apache2
+
+# Download requirments 
+ 
+apt-get install hostapd dnsmasq apache2
 
 apt-get update
